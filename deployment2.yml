@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    app: ci-cd
+    author: micron
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: ci-cd
+  template:
+    metadata:
+      name: jenkins-pod
+      labels:
+        app: ci-cd
+    spec:
+      containers:
+        - name: myjenkins
+          image: jenkins/jenkins
+          ports:
+            - containerPort: 8080
+              hostPort: 8989
+...
