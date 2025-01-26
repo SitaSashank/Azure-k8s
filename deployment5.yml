@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: database
+    author: micron
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+     app: database
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: mydb
+          image: postgres
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: user
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: db
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: db
+...
+
+
