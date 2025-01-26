@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ghost-ds
+  labels:
+    app: cms
+    author: micron
+spec:
+  selector:
+    matchLabels:
+      app: cms
+  template:
+    metadata:
+      name: ghost-pod
+      labels:
+        app: cms
+    spec:
+      containers:
+        - name: ghost-dscont
+          image: ghost
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: ghost-secret
+                  key: password
+...
