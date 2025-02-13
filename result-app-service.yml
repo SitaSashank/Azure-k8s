@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: result-app-service
+  labels:
+    techUsed: NodeJS
+    author: micron
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 50
+      nodePort: 30009
+  selector:
+    name: result-application
+...
+
+    

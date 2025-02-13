@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-application
+  labels:
+    techUsed: dotNet
+    author: micron
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      techUsed: dotNet
+      author: micron
+  template:
+    metadata:
+      name: worker-application-pod
+      labels:
+        techUsed: dotNet
+        author:  micron
+    spec:
+      containers:
+        - name: worker-application
+          image: dockersamples/examplevotingapp_worker
+...

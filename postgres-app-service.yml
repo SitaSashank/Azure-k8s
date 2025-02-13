@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  labels:
+    techUsed: postgres
+    author: micron
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 5432
+      port: 5432
+  selector:
+    techUsed: postgres
+    author: micron
+---

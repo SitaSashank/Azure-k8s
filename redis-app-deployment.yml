@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-application
+  labels:
+    techUsed: redis
+    author: micron
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      techUsed: redis
+      author: micron
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        techUsed: redis
+        author: micron
+    spec:
+      containers:
+        - name: redis-db
+          image: redis
+...

@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-application
+  labels:
+    techUsed: python
+    author: micron
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      techUsed: python
+      author: micron
+  template:
+    metadata:
+      name: voting-application-pod
+      labels:
+        techUsed: python
+        author: micron
+    spec:
+      containers:
+        - name: voting-application
+          image: dockersamples/examplevotingapp_vote
+...

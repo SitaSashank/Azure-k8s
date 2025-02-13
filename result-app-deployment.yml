@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-application
+  labels:
+    techUsed: NodeJS
+    author: micron
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: result-application
+  template:
+    metadata:
+      name: result-application-pod
+      labels:
+        name: result-application
+    spec:
+      containers:
+        - name: result-application
+          image: dockersamples/examplevotingapp_result
+...

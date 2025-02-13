@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-application
+  labels:
+    techUsed: postgres
+    author: micron
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      techUsed: postgres
+      author: micron
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        techUsed: postgres
+        author: micron
+    spec:
+      containers:
+        - name: postgres-app
+          image: postgres
+          env:
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_PASSWORD
+              value: project
+            - name: POSTGRES_DB
+              value: mydb
+...
