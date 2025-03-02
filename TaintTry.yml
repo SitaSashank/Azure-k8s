@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    author: micron
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: proxyServer
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        type: proxyServer
+    spec:
+      containers:
+        - name: mynginx
+          image: nginx
+      tolerations:
+        - key: slave1
+          value: micron1
+          operator: Equal
+          effect: NoSchedule
+...
+...

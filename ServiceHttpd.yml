@@ -2,18 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: result-app-service
+  name: httpd-service
   labels:
-    techUsed: NodeJS
     author: micron
 spec:
   type: LoadBalancer
   ports:
     - targetPort: 80
-      port: 50
+      port: 80
       nodePort: 30009
   selector:
-    name: result-application
+    type: webserver
 ...
-
-#This is a change
